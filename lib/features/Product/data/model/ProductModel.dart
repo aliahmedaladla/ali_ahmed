@@ -1,5 +1,14 @@
 class ProductModel {
-  dynamic id, price, image,name, description, category, rating, reviews;
+  dynamic id,
+      price,
+      image,
+      name,
+      description,
+      category,
+      rating,
+      reviews,
+      isFavorite,
+      onFavoriteToggle;
 
   ProductModel({
     required this.id,
@@ -9,14 +18,13 @@ class ProductModel {
     required this.description,
     required this.category,
     required this.rating,
-    required this.image
-
+    required this.image,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> product) {
     return ProductModel(
       id: product['id'],
-      image:product['image'],
+      image: product['image'],
       reviews: product['reviews'],
       price: product['price'],
       name: product['name'],
@@ -39,7 +47,7 @@ class ProductModel {
       reviews: '',
       description: '',
       rating: '',
-      image: ''
+      image: '',
     );
   }
 
@@ -58,6 +66,6 @@ class ProductModel {
         'reviews': reviews,
         'category': category,
         'description': description,
-        'image':image
+        'image': image
       };
 }

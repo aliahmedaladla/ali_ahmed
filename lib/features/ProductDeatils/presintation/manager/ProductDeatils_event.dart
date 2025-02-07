@@ -5,13 +5,13 @@ abstract class ProductDeatilsEvent extends Equatable {
 }
 
 class GetAllProductDeatils extends ProductDeatilsEvent {
-   final String id;
+  final String id;
   @override
   List<Object> get props => [];
   const GetAllProductDeatils({required this.id});
 }
 
-class GetLast10ProductDeatils extends ProductDeatilsEvent {
+class GetLast10Product extends ProductDeatilsEvent {
   @override
   List<Object> get props => [];
 }

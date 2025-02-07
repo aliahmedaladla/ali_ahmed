@@ -1,142 +1,88 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  /// Colors
-  static const Color primaryColor = Color(0xFFFDFAFA); // اللون الأساسي
-  static const Color secondaryColor = Color(0xFFFDFAFA); // اللون الثانوي
-  static const Color accentColor = Color(0xFF9C27B0); // لون التمييز
-  static const Color backgroundColor = Color(0xFFEFEAEA); // لون الخلفية
-  static const Color errorColor = Color(0xFFFF5252); // لون الخطأ
-  static const Color successColor = Color(0xFF4CAF50); // لون النجاح
-  static const Color warningColor = Color(0xFFFFC107); // لون التحذير
-  static const Color infoColor = Color(0xFF2196F3); // لون المعلومات
+  ///colors
+  static const Color primaryColor = Color(0xFFDC6465);
 
-  /// MaterialColor for primaryColor
-  static MaterialColor primarySwatch = MaterialColor(0xFFDC6465, {
-    50: Color(0xFFDC6465).withOpacity(.05),
-    100: Color(0xFFDC6465).withOpacity(.1),
-    200: Color(0xFFDC6465).withOpacity(.2),
-    300: Color(0xFFDC6465).withOpacity(.3),
-    400: Color(0xFFDC6465).withOpacity(.4),
-    500: Color(0xFFDC6465).withOpacity(.5),
-    600: Color(0xFFDC6465).withOpacity(.6),
-    700: Color(0xFFDC6465).withOpacity(.7),
-    800: Color(0xFFDC6465).withOpacity(.8),
-    900: Color(0xFFDC6465).withOpacity(.9),
+  static MaterialColor primarySwatch = MaterialColor(Color(0xFFDC6465).value, {
+    50: const Color(0xFFDC6465).withOpacity(.05),
+    100: const Color(0xFFDC6465).withOpacity(.1),
+    200: const Color(0xFFDC6465).withOpacity(.2),
+    300: const Color(0xFFDC6465).withOpacity(.3),
+    400: const Color(0xFFDC6465).withOpacity(.4),
+    500: const Color(0xFFDC6465).withOpacity(.5),
+    600: const Color(0xFFDC6465).withOpacity(.6),
+    700: const Color(0xFFDC6465).withOpacity(.7),
+    800: const Color(0xFFDC6465).withOpacity(.8),
+    900: const Color(0xFFDC6465).withOpacity(.9)
   });
 
-  /// Secondary Switch
-  static MaterialColor secondarySwitch = MaterialColor(0xFFFFFFFF, {
-    50: Color(0xFFBDB2B2).withOpacity(.05),
-    100: Color(0xFF573ECC).withOpacity(.1),
-    200: Color(0xFFFFFFFF).withOpacity(.2),
-    300: Color(0xFFFFFFFF).withOpacity(.3),
-    400: Color(0xFFFFFFFF).withOpacity(.4),
-    500: Color(0xFFFFFFFF).withOpacity(.5),
-    600: Color(0xFFFFFFFF).withOpacity(.6),
-    700: Color(0xFFFFFFFF).withOpacity(.7),
-    800: Color(0xFFFFFFFF).withOpacity(.8),
-    900: Color(0xFFFFFFFF).withOpacity(.9),
+  static const Color secondaryColor = Color(0xFFFFFFFF);
+  static MaterialColor secondarySwitch =
+      MaterialColor(Color(0xFFFFFFFF).value, {
+    50: const Color(0xFFFFFFFF).withOpacity(.05),
+    100: const Color(0xFFFFFFFF).withOpacity(.1),
+    200: const Color(0xFFFFFFFF).withOpacity(.2),
+    300: const Color(0xFFFFFFFF).withOpacity(.3),
+    400: const Color(0xFFFFFFFF).withOpacity(.4),
+    500: const Color(0xFFFFFFFF).withOpacity(.5),
+    600: const Color(0xFFFFFFFF).withOpacity(.6),
+    700: const Color(0xFFFFFFFF).withOpacity(.7),
+    800: const Color(0xFFFFFFFF).withOpacity(.8),
+    900: const Color(0xFFFFFFFF).withOpacity(.9)
   });
 
-  /// Background Colors
-  static const Color scaffoldBackgroundColor = Color(0xFFFFFFFF);
-  static const Color scaffoldBackgroundColor2 = Color(0xFFF6F9FF);
-  static const Color cardColor = Color(0xFFE0E0E0);
+  static Color scaffoldBackgroundColor = Color(0xffFFFFFF);
+  static Color scaffoldBackgroundColor2 = Color(0xffF6F9FF);
 
-  /// Font Family
-  static const String fontFamily = 'Alhurra';
+  static const Color red = Color(0xFFD32F2F);
+  static const Color pink = Color(0xFFC2185B);
+  static const Color purple = Color(0xFF7B1FA2);
+  static const Color deepPurple = Color(0xFF512DA8);
+  static const Color indigo = Color(0xFF303F9F);
+  static const Color blue = Color(0xFF1976D2);
+  static const Color lightBlue = Color(0xFF0288D1);
+  static const Color cyan = Color(0xFF0097A7);
+  static const Color teal = Color(0xFF00796B);
+  static const Color green = Color(0xFF388E3C);
+  static const Color lightGreen = Color(0xFF689F38);
+  static const Color lime = Color(0xFFAFB42B);
+  static const Color yellow = Color(0xFFFBC02D);
+  static const Color amber = Color(0xFFFFA000);
+  static const Color orange = Color(0xFFF57C00);
+  static const Color deepOrange = Color(0xFFE64A19);
+  static const Color brown = Color(0xFF5D4037);
+  static const Color grey = Color(0xFF616161);
+  static const Color blueGrey = Color(0xFF455A64);
 
-  /// Border Styles
-  static const BorderRadius cardBorderRadius = BorderRadius.all(
-    Radius.circular(15),
-  );
+  // Neutral Colors
+  static const Color black = Color(0xFF000000);
+  static const Color white = Color(0xFFFFFFFF);
 
-  /// Shadows
-  static const List<BoxShadow> boxShadows = [
-    BoxShadow(
-      color: Colors.black26,
-      offset: Offset(0, 4),
-      blurRadius: 10,
-    ),
-  ];
+  static String fontFamily = 'Alhurra';
 
-  /// Text Styles
-  static final TextTheme textTheme = TextTheme(
+  static TextTheme textTheme = TextTheme(
     displayLarge: TextStyle(
       fontSize: 18.0,
       fontFamily: fontFamily,
       color: Colors.brown,
     ),
-    displayMedium: TextStyle(
-      fontSize: 16.0,
-      fontFamily: fontFamily,
-      color: Colors.brown,
-    ),
-    displaySmall: TextStyle(
-      fontSize: 14,
-      fontFamily: fontFamily,
-      color: Colors.brown,
-    ),
+    displayMedium:
+        TextStyle(fontSize: 16.0, fontFamily: fontFamily, color: Colors.brown),
+    displaySmall:
+        TextStyle(fontSize: 14, fontFamily: fontFamily, color: Colors.brown),
     headlineMedium: TextStyle(
-      fontSize: 14,
-      fontFamily: fontFamily,
-      color: AppTheme.primaryColor,
-    ),
-    headlineSmall: TextStyle(
-      fontSize: 12.0,
-      fontFamily: fontFamily,
-      color: Colors.brown,
-    ),
+        fontSize: 14, fontFamily: fontFamily, color: AppTheme.primaryColor),
+    headlineSmall:
+        TextStyle(fontSize: 12.0, fontFamily: fontFamily, color: Colors.brown),
     titleLarge: TextStyle(
-      fontSize: 12.0,
-      fontFamily: fontFamily,
-      color: AppTheme.primaryColor,
-    ),
+        fontSize: 12.0, fontFamily: fontFamily, color: AppTheme.primaryColor),
     bodyLarge: TextStyle(
       fontSize: 16.0,
       fontFamily: fontFamily,
       color: Colors.white,
     ),
-    bodyMedium: TextStyle(
-      fontSize: 20.0,
-      fontFamily: fontFamily,
-      color: Colors.white,
-    ),
-    labelLarge: TextStyle(
-      fontSize: 14,
-      fontFamily: fontFamily,
-      fontWeight: FontWeight.bold,
-      color: Colors.white,
-    ),
-    labelSmall: TextStyle(
-      fontSize: 12,
-      fontFamily: fontFamily,
-      color: Colors.grey,
-    ),
-  );
-
-  /// Button Styles
-  static final ButtonStyle elevatedButtonStyle = ElevatedButton.styleFrom(
-    backgroundColor: primaryColor,
-    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-    shape: RoundedRectangleBorder(
-      borderRadius: cardBorderRadius,
-    ),
-  );
-
-  static final ButtonStyle textButtonStyle = TextButton.styleFrom(
-    foregroundColor: primaryColor,
-    textStyle: const TextStyle(
-      fontSize: 14,
-      fontFamily: fontFamily,
-    ),
-  );
-
-  static final ButtonStyle outlinedButtonStyle = OutlinedButton.styleFrom(
-    side: BorderSide(color: primaryColor, width: 1.5),
-    shape: RoundedRectangleBorder(
-      borderRadius: cardBorderRadius,
-    ),
+    bodyMedium:
+        TextStyle(fontSize: 20.0, fontFamily: fontFamily, color: Colors.white),
   );
 }

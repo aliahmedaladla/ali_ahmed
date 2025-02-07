@@ -57,7 +57,7 @@ android {
         minSdkVersion 21
         compileSdk 34
         targetSdk 34
-        versionCode 2
+        versionCode 3
         versionName "1.0"
     }
 

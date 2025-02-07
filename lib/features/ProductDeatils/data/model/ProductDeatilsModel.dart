@@ -1,22 +1,20 @@
 class ProductDeatilsModel {
-  dynamic id, price, image,name, description, category, rating, reviews;
+  dynamic id, price, image, name, description, category, rating, reviews;
 
-  ProductDeatilsModel({
-    required this.id,
-    required this.price,
-    required this.name,
-    required this.reviews,
-    required this.description,
-    required this.category,
-    required this.rating,
-    required this.image
-
-  });
+  ProductDeatilsModel(
+      {required this.id,
+      required this.price,
+      required this.name,
+      required this.reviews,
+      required this.description,
+      required this.category,
+      required this.rating,
+      required this.image});
 
   factory ProductDeatilsModel.fromJson(Map<String, dynamic> product) {
     return ProductDeatilsModel(
       id: product['id'],
-      image:product['image'],
+      image: product['image'],
       reviews: product['reviews'],
       price: product['price'],
       name: product['name'],
@@ -32,15 +30,14 @@ class ProductDeatilsModel {
 
   factory ProductDeatilsModel.init() {
     return ProductDeatilsModel(
-      id: '',
-      price: '',
-      name: '',
-      category: '',
-      reviews: '',
-      description: '',
-      rating: '',
-      image: ''
-    );
+        id: '',
+        price: '',
+        name: '',
+        category: '',
+        reviews: '',
+        description: '',
+        rating: '',
+        image: '');
   }
 
   fromJsonList(List<dynamic> jsonList) {
@@ -58,6 +55,6 @@ class ProductDeatilsModel {
         'reviews': reviews,
         'category': category,
         'description': description,
-        'image':image
+        'image': image
       };
 }

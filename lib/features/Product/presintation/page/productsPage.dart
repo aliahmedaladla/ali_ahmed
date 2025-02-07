@@ -1,85 +1,94 @@
 import 'package:flutter/material.dart';
-import 'package:ufuqstore/Widget/WidgetProduct.dart';
-//import 'package:ufuqstore/features/ProductDeatilsModel/data/repository/ProductDeatilsModelRepository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import 'package:ufuqstore/core/AppTheme.dart';
+import 'package:ufuqstore/core/util/ScreenUtil.dart';
+import 'package:ufuqstore/features/Product/presintation/Widget/ProductCard.dart';
 
+import '../../../../injection_container.dart';
+import '../manager/Product_bloc.dart';
 
+class Product extends StatefulWidget {
+  Product({super.key});
 
-class ProductPage extends StatefulWidget {
   @override
-  _ProductPageState createState() => _ProductPageState();
+  State<Product> createState() => _ProductPageState();
 }
 
-class _ProductPageState extends State<ProductPage> {
-  final List<Map<String, String>> products = [
-    {"name": "Watch", "price": "\$40", "image": "assets/Images/img_1.png"},
-    {"name": "Nike", "price": "\$430", "image": "assets/Images/img_2.png"},
-    {"name": "LG TV", "price": "\$330", "image": "assets/Images/img_3.png"},
-    {"name": "Airpods", "price": "\$333", "image": "assets/Images/img_4.png"},
-    {"name": "Jacket", "price": "\$50", "image": "assets/Images/img_5.png"},
-    {"name": "Jacket", "price": "\$50", "image": "assets/Images/img_6.png"},
-    {"name": "Jacket", "price": "\$50", "image": "assets/Images/img_7.png"},
-    {"name": "Jacket", "price": "\$50", "image": "assets/Images/img_8.png"},
-  ];
+class _ProductPageState extends State<Product> {
+  List filterList = [];
 
-  List<Map<String, String>> favorites = [];
+  GlobalKey<ScaffoldState> scaffolKey = GlobalKey<ScaffoldState>();
 
-  void toggleFavorite(Map<String, String> product) {
-    setState(() {
-      if (favorites.contains(product)) {
-        favorites.remove(product);
-      } else {
-        favorites.add(product);
-      }
-    });
+  int itemisselected = 0;
+  String valueInput = "";
+  Widget ProductWidget = Container();
+  ScreenUtil screenUtil = ScreenUtil();
+  Widget build(BuildContext context) {
+    screenUtil.init(context);
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppTheme.deepOrange,
+        elevation: 100,
+        title: Text(
+          'Product',
+          style: TextStyle(
+              fontSize: 28, fontWeight: FontWeight.bold, color: AppTheme.black),
+        ),
+      ),
+      body: BlocProvider(
+        create: (context) => sl<Product_bloc>(),
+        child: BlocConsumer<Product_bloc, ProductState>(
+          listener: (context, state) {
+            if (state is ProductError) {
+              print(state.errorMessage);
+            }
+          },
+          builder: (context, state) {
+            if (state is ProductInitial) {
+              BlocProvider.of<Product_bloc>(context).add(GetAllProduct());
+            }
+
+            if (state is ProductLoading) {
+              ProductWidget = Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: screenUtil.screenHeight * .1,
+                  ),
+                  Center(child: Lottie.asset('assets/Json/Loding.json'))
+                ],
+              );
+            }
+
+            if (state is ProductILoaded) {
+              //TODO::Show Product here
+
+              return GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
+                  itemCount: state.productModel.length,
+                  itemBuilder: (context, index) {
+                    return ProductCard(
+                      productModel: state.productModel[index],
+                    );
+                  });
+            }
+
+            return ProductWidget;
+          },
+        ),
+      ),
+    );
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppTheme.primaryColor, // استخدام اللون الأساسي
-        elevation: 0,
-        title: Text(
-          'Products',
-          style: AppTheme.textTheme.titleLarge, // استخدام الخط والستايل
-        ),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.favorite, color: Colors.red),
-            onPressed: () {
-              Navigator.pushNamed(
-                context,
-                '/Favorite_page',
-                arguments: favorites,
-              );
-            },
-          ),
-        ],
-        iconTheme: IconThemeData(color: AppTheme.secondaryColor), // لون الأيقونات
-      ),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(16),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
-          childAspectRatio: 3 / 4,
-        ),
-        itemCount: products.length,
-        itemBuilder: (context, index) {
-          final product = products[index];
-          final isFavorite = favorites.contains(product);
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
-          return ContainerProduct(
-            product: product,
-            isFavorite: isFavorite,
-            onFavoriteToggle: () => toggleFavorite(product),
-          );
-        },
-      ),
-      backgroundColor: AppTheme.scaffoldBackgroundColor, // خلفية الشاشة
-    );
+  void dispose() {
+    super.dispose();
   }
 }

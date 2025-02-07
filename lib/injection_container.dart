@@ -1,50 +1,15 @@
-import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
-import 'package:http/io_client.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ufuqstore/features/Product/data/repository/ProductRepository.dart';
 import 'package:ufuqstore/features/Product/presintation/manager/Product_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ufuqstore/features/ProductDeatils/data/repository/ProductDeatilsRepository.dart';
+import 'package:ufuqstore/features/ProductDeatils/presintation/manager/ProductDeatils_bloc.dart';
+
 import 'dataProviders/local_data_provider.dart';
 import 'dataProviders/network/Network_info.dart';
 import 'dataProviders/remote_data_provider.dart';
-import 'package:get_it/get_it.dart';
-
-// import 'features/Attacks/data/repository/AttackRepository.dart';
-// import 'features/Attacks/presintation/manager/Attack_bloc.dart';
-// import 'features/Boycott_Brands/data/repository/BrandRepository.dart';
-// import 'features/Boycott_Brands/presintation/manager/brand_bloc.dart';
-// import 'features/Boycott_markets/data/repository/MarketRepository.dart';
-// import 'features/Boycott_markets/presintation/manager/market_bloc.dart';
-// import 'features/Clipboard/data/repository/ClipboardRepository.dart';
-// import 'features/Clipboard/presintation/manager/Clipboard_bloc.dart';
-// import 'features/CountryBoycott/data/repository/CountryBoycottRepository.dart';
-// import 'features/CountryBoycott/presintation/manager/CountryBoycott_bloc.dart';
-// import 'features/Donations/data/repository/DonationsRepository.dart';
-// import 'features/Donations/presintation/manager/Donations_bloc.dart';
-// import 'features/Extermination/data/repository/ExterminationRepository.dart';
-// import 'features/Extermination/presintation/manager/Extermination_bloc.dart';
-// import 'features/Home/data/repository/HomeRepository.dart';
-// import 'features/Home/presintation/manager/Home_bloc.dart';
-// import 'features/Live/data/repository/LiveRepository.dart';
-// import 'features/Live/presintation/manager/Live_bloc.dart';
-// import 'features/Notifications/data/model/NotificationsModel.dart';
-// import 'features/Onboarding/data/repository/CountryRepository.dart';
-// import 'features/Onboarding/presintation/manager/Country_bloc.dart';
-// import 'features/Rumors/data/repository/RumorsRepository.dart';
-// import 'features/Rumors/presintation/manager/Rumors_bloc.dart';
-// import 'features/ScanBarcode/data/repository/BarcodeRepository.dart';
-// import 'features/ScanBarcode/presintation/manager/Barcode_bloc.dart';
-// import 'features/Statistics/data/repository/StatisticsRepository.dart';
-// import 'features/Statistics/presintation/manager/Statistics_bloc.dart';
-// import 'features/Stories/data/repository/StoriesRepository.dart';
-// import 'features/Stories/presintation/manager/Stories_bloc.dart';
-import 'features/ProductDeatils/data/repository/ProductDeatilsRepository.dart';
-import 'features/ProductDeatils/presintation/manager/ProductDeatils_bloc.dart';
-import 'main.dart';
 
 final sl = GetIt.instance;
 Future<void> init() async {
@@ -71,6 +36,8 @@ Future<void> init() async {
   // _initCountryBoycott_blocFeature();
   // _initExtermination_blocFeature();
   _initProduct_blocFeature();
+  _initProductDeatils_blocFeature();
+
   ///service provider
 
   //! Core
@@ -79,12 +46,10 @@ Future<void> init() async {
 
   // data sources
   sl.registerLazySingleton<RemoteDataProvider>(
-          () => RemoteDataProvider(client: sl()));
+      () => RemoteDataProvider(client: sl()));
 
   sl.registerLazySingleton<LocalDataProvider>(
-          () => LocalDataProvider(sharedPreferences: sl()));
-
-
+      () => LocalDataProvider(sharedPreferences: sl()));
 
   //! External
   final sharedPreferences = await SharedPreferences.getInstance();
@@ -100,14 +65,13 @@ void _initProduct_blocFeature() {
 
   //repositories
   sl.registerLazySingleton<ProductRepository>(
-        () => ProductRepository(
+    () => ProductRepository(
       remoteDataProvider: sl(),
       localDataProvider: sl(),
       networkInfo: sl(),
     ),
   );
 }
-
 
 void _initCategories_blocFeature() {
 //bloc
@@ -115,20 +79,21 @@ void _initCategories_blocFeature() {
 
   //repositories
   sl.registerLazySingleton<ProductRepository>(
-        () => ProductRepository(
+    () => ProductRepository(
       remoteDataProvider: sl(),
       localDataProvider: sl(),
       networkInfo: sl(),
     ),
   );
 }
-void _initproductDeatils_blocFeature() {
+
+void _initProductDeatils_blocFeature() {
 //bloc
   sl.registerFactory(() => ProductDeatils_bloc(repository: sl()));
 
   //repositories
   sl.registerLazySingleton<ProductDeatilsRepository>(
-        () => ProductDeatilsRepository(
+    () => ProductDeatilsRepository(
       remoteDataProvider: sl(),
       localDataProvider: sl(),
       networkInfo: sl(),

@@ -15,9 +15,7 @@ class ProductDeatilsLoading extends ProductDeatilsState {
 }
 
 class ProductDeatilsILoaded extends ProductDeatilsState {
-  List<ProductDeatilsModel> productDeatilsModel;
-
-
+  ProductDeatilsModel productDeatilsModel;
   ProductDeatilsILoaded({required this.productDeatilsModel});
 
   @override

@@ -15,14 +15,14 @@ class ProductLoading extends ProductState {
 }
 
 class ProductILoaded extends ProductState {
-  List<ProductModel> ProductDeatilsModel;
-  ProductILoaded({required this.ProductDeatilsModel});
+  List<ProductModel> productModel;
+  ProductILoaded({required this.productModel});
 
   @override
-  List<Object> get props => [ProductDeatilsModel];
+  List<Object> get props => [ProductModel];
 }
 
-class ProductError  extends ProductState {
+class ProductError extends ProductState {
   String errorMessage;
 
   ProductError({required this.errorMessage});

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ContainerProduct extends StatelessWidget {
-  final Map<String, String> product;
+class ContainerProductDeatils extends StatelessWidget {
+  final Map<String, String> ProductDeatils;
   final bool isFavorite;
   final VoidCallback onFavoriteToggle;
 
-  const ContainerProduct({
+  const ContainerProductDeatils({
     Key? key,
-    required this.product,
+    required this.ProductDeatils,
     required this.isFavorite,
     required this.onFavoriteToggle,
   }) : super(key: key);
@@ -37,7 +37,7 @@ class ContainerProduct extends StatelessWidget {
                     top: Radius.circular(12),
                   ),
                   child: Image.asset(
-                    product['image']!,
+                    ProductDeatils['image']!,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
@@ -65,7 +65,7 @@ class ContainerProduct extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  product['name']!,
+                  ProductDeatils['name']!,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
@@ -73,26 +73,21 @@ class ContainerProduct extends StatelessWidget {
                 ),
                 SizedBox(height: 4),
                 Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.spaceBetween, // توزيع العناصر
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // السعر في الجهة اليسرى
                     Text(
-                      product['price']!,
-                      style: TextStyle(color: Color(0xFF6055D8),fontSize: 12),
+                      ProductDeatils['price']!,
+                      style: TextStyle(color: Colors.blue),
                     ),
-                    // الأيقونة مع خلفية بنفسجيّة على الجهة اليمنى
                     Container(
                       padding: EdgeInsets.all(6),
                       decoration: BoxDecoration(
-                        color: Color(0xFF6055D8),
-
-                        // اللون البنفسجي
-                        borderRadius: BorderRadius.circular(18),
+                        color: Colors.purple,
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       child: Icon(
-                        Icons.add,
-                        color: Colors.white, // لون الأيقونة أبيض
+                        Icons.monetization_on,
+                        color: Colors.white,
                         size: 20,
                       ),
                     ),

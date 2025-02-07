@@ -1,4 +1,4 @@
-  import 'dart:developer';
+import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'error/exceptions.dart';
 import 'error/failures.dart';

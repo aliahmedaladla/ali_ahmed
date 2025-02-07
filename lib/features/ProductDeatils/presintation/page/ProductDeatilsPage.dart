@@ -1,21 +1,20 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import 'package:ufuqstore/core/util/ScreenUtil.dart';
 
 import '../../../../injection_container.dart';
-import '../../../../main.dart';
-
 import '../manager/ProductDeatils_bloc.dart';
 
 class ProductDeatilsPage extends StatefulWidget {
-  ProductDeatilsPage({super.key});
+  final String id;
+  ProductDeatilsPage({super.key, required this.id});
 
   @override
-  State<ProductDeatilsPage> createState() => ProductDeatilsPageState();
+  State<ProductDeatilsPage> createState() => _ProductDeatilsPageState();
 }
 
-class ProductDeatilsPageState extends State<ProductDeatilsPage> {
+class _ProductDeatilsPageState extends State<ProductDeatilsPage> {
   @override
   ScrollController _scrollController = ScrollController();
   List filterList = [
@@ -41,7 +40,7 @@ class ProductDeatilsPageState extends State<ProductDeatilsPage> {
 
   int itemisselected = 0;
   String valueInput = "";
-  Widget ProductDeatilsWidget = Container();
+  Widget ProductWidget = Container();
   ScreenUtil screenUtil = ScreenUtil();
   Widget build(BuildContext context) {
     screenUtil.init(context);
@@ -57,39 +56,40 @@ class ProductDeatilsPageState extends State<ProductDeatilsPage> {
           builder: (context, state) {
             if (state is ProductDeatilsInitial) {
               BlocProvider.of<ProductDeatils_bloc>(context)
-                  .add(GetAllProductDeatils(id: "1"));
+                  .add(GetAllProductDeatils(id: widget.id));
             }
 
             if (state is ProductDeatilsLoading) {
-              ProductDeatilsWidget = Column(
+              ProductWidget = Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
                     height: screenUtil.screenHeight * .1,
                   ),
-                  Center(
-                      child: Text("loding ......."))
-
-
+                  Center(child: Lottie.asset('assets/Json/Loding.json'))
                 ],
               );
             }
 
             if (state is ProductDeatilsILoaded) {
-              //TODO::Show ProductDeatils here
-
-
-
+              //TODO::Show Product here
 
               return Column(
                 children: [
-                  Image.network(state.productDeatilsModel[0].image,fit: BoxFit.cover,)
+                  SizedBox(
+                    height: screenUtil.screenHeight * .5,
+                    child: Image.network(
+                      state.productDeatilsModel.image,
+                    ),
+                  ),
+                  Text(state.productDeatilsModel.name),
+                  Text(state.productDeatilsModel.price.toString()),
+                  Text(state.productDeatilsModel.reviews.toString()),
                 ],
-
               );
             }
 
-            return ProductDeatilsWidget;
+            return ProductWidget;
           },
         ),
       ),
@@ -100,11 +100,9 @@ class ProductDeatilsPageState extends State<ProductDeatilsPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
   }
 
   void dispose() {
     super.dispose();
   }
-
 }

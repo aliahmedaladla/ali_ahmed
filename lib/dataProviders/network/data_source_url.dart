@@ -8,7 +8,6 @@ class DataSourceURL {
   static String getAllMarkets = 'markets';
   static String getAllHome = 'images';
   // static String getAllProducts = 'brand/detail';
- // static String getAllProductDeatilsModel = 'products';
   static String getAllCategories = 'category';
   static String barcodeCheck = 'form';
   static String CountryBoycott = 'country_status';
