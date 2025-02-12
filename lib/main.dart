@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:ufuqstore/core/util/common.dart';
 import 'package:ufuqstore/features/Product/presintation/page/productsPage.dart';
-
+import 'package:ufuqstore/features/Registration/presintation/manager/Registration_bloc.dart';
+import 'package:ufuqstore/features/Registration/presintation/page/LoginPage.dart';
+import 'package:ufuqstore/features/Registration/presintation/page/SignupPage.dart';
 import 'injection_container.dart' as object;
+late final String token;
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // تأكد من التهيئة هنا
+  WidgetsFlutterBinding.ensureInitialized();
   await object.init();
+  token = await getCachedData(key: "token", retrievedDataType: String, returnType: String)??"";
   runApp(const MyApp());
 }
 
@@ -37,7 +42,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Product(),
+      home: token == "" ? SinupPage() : Product(),
     );
   }
 }

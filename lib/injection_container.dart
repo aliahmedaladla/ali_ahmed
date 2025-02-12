@@ -10,6 +10,8 @@ import 'package:ufuqstore/features/ProductDeatils/presintation/manager/ProductDe
 import 'dataProviders/local_data_provider.dart';
 import 'dataProviders/network/Network_info.dart';
 import 'dataProviders/remote_data_provider.dart';
+import 'features/Registration/data/repository/RegistrationRepository.dart';
+import 'features/Registration/presintation/manager/Registration_bloc.dart';
 
 final sl = GetIt.instance;
 Future<void> init() async {
@@ -37,6 +39,7 @@ Future<void> init() async {
   // _initExtermination_blocFeature();
   _initProduct_blocFeature();
   _initProductDeatils_blocFeature();
+  _initRegistration_blocFeature();
 
   ///service provider
 
@@ -73,13 +76,13 @@ void _initProduct_blocFeature() {
   );
 }
 
-void _initCategories_blocFeature() {
+void _initRegistration_blocFeature() {
 //bloc
-  sl.registerFactory(() => Product_bloc(repository: sl()));
+  sl.registerFactory(() => Registration_bloc(repository: sl()));
 
   //repositories
-  sl.registerLazySingleton<ProductRepository>(
-    () => ProductRepository(
+  sl.registerLazySingleton<RegistrationRepository>(
+    () => RegistrationRepository(
       remoteDataProvider: sl(),
       localDataProvider: sl(),
       networkInfo: sl(),
