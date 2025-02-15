@@ -19,7 +19,7 @@ class Registration_bloc
   @override
   Stream<RegistrationState> mapEventToState(
       RegistrationEvent event) async* {
-    if (event is SinupEvent) {
+    if (event is sinupEvent) {
       yield SinupLoading();
       final failureOrData = await repository.Sinup(event.username,event.email,event.password);
 
@@ -31,6 +31,23 @@ class Registration_bloc
         (data) async* {
           log('yield is loaded');
           yield SinupLoaded(
+            registrationModel: data,
+          );
+        },
+      );
+
+    }
+    if (event is LoginEvent) {
+      yield LoginLoading();
+      final failureOrData = await repository.login(event.username, event.password);
+      yield* failureOrData.fold(
+            (failure) async* {
+          log('yield is error');
+          yield LoginError(errorMessage: mapFailureToMessage(failure));
+        },
+            (data) async* {
+          log('yield is loaded');
+          yield LoginLoaded(
             registrationModel: data,
           );
         },

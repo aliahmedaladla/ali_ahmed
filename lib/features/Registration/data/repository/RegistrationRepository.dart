@@ -39,4 +39,22 @@ class RegistrationRepository extends Repository {
         },
         getCacheDataFunction: () async {});
   }
+  Future<Either<Failure, dynamic>> login(String username, String password) async {
+    return await sendRequest(
+        checkConnection: networkInfo.isConnected,
+        remoteFunction: () async {
+          RegistrationModel remoteData = await remoteDataProvider.sendJsonData(
+            url: DataSourceURL.login,
+            returnType: RegistrationModel.init(),
+            retrievedDataType: RegistrationModel.init(),
+            jsonData: {
+              "username": username,
+              "password": password
+            },
+          );
+          print(remoteData);
+          return remoteData;
+        },
+        getCacheDataFunction: () async {});
+  }
 }
