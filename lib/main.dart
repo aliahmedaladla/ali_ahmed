@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ufuqstore/core/util/common.dart';
+import 'package:ufuqstore/features/Home/presintation/page/homePage.dart';
 import 'package:ufuqstore/features/Product/presintation/page/productsPage.dart';
 import 'package:ufuqstore/features/Registration/presintation/manager/Registration_bloc.dart';
 import 'package:ufuqstore/features/Registration/presintation/page/LoginPage.dart';
@@ -10,8 +11,8 @@ late final String token;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await object.init();
-  token = await getCachedData(key: "token", retrievedDataType: String, returnType: String)??"";
-  runApp(const MyApp());
+  token = await getCachedData(key: "token", retrievedDataType: "", returnType: "")??"";
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {

@@ -9,7 +9,6 @@ import '../../../../injection_container.dart';
 import '../../../Product/presintation/page/productsPage.dart';
 import '../manager/Registration_bloc.dart';
 
-
 class LoginPage extends StatefulWidget {
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -24,17 +23,25 @@ class _LoginPageState extends State<LoginPage> {
   Widget ProductWidget = Container();
   ScreenUtil screenUtil = ScreenUtil();
 
-
   final TextEditingController _usrnameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  bool _isPasswordVisible = false;
+
+  @override
   Widget build(BuildContext context) {
     screenUtil.init(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: AppTheme.deepOrange,
-        title: Text("تسجيل الدخول",style: TextStyle(
-            fontSize: 28, fontWeight: FontWeight.bold, color: AppTheme.black),
+        backgroundColor: AppTheme.primaryColor,
+        title: Text(
+          "تسجيل الدخول",
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: AppTheme.black,
+          ),
         ),
       ),
       body: BlocProvider(
@@ -92,7 +99,6 @@ class _LoginPageState extends State<LoginPage> {
               cachedData(key: "token", data: state.registrationModel.token);
               Navigator.push(context, MaterialPageRoute(builder: (context) => Product()));
             }
-
           },
           builder: (context, state) {
             return SingleChildScrollView(
@@ -109,13 +115,12 @@ class _LoginPageState extends State<LoginPage> {
                         radius: 60,
                         backgroundColor: Theme.of(context).primaryColor.withOpacity(0.1),
                         child: Icon(
-                          Icons.shopping_cart, // تغيير الأيقونة هنا
+                          Icons.shopping_cart,
                           size: 60,
                           color: AppTheme.primaryColor,
                         ),
                       ),
                     ),
-
                     const SizedBox(height: 32),
                     TextFormField(
                       controller: _usrnameController,
@@ -130,20 +135,27 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: Colors.grey.shade300),
+                          borderSide: BorderSide(color: AppTheme.primaryColor, width: 2.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12), // حواف دائرية
+                          borderSide: BorderSide(color: AppTheme.primaryColor, width: 2.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: AppTheme.primaryColor, width: 2.0),
                         ),
                         filled: true,
-                        fillColor: Colors.grey.shade50,
+                        fillColor: Colors.white,
                         contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 20),
                       ),
                     ),
-
                     const SizedBox(height: 20),
                     TextFormField(
                       controller: _passwordController,
                       textAlign: TextAlign.right,
                       textDirection: TextDirection.rtl,
-                      obscureText: true,
+                      obscureText: !_isPasswordVisible,
                       decoration: InputDecoration(
                         labelText: "كلمة المرور",
                         floatingLabelAlignment: FloatingLabelAlignment.start,
@@ -151,16 +163,34 @@ class _LoginPageState extends State<LoginPage> {
                           padding: const EdgeInsets.only(left: 16),
                           child: Icon(Icons.lock_outline),
                         ),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                            color: Colors.grey.shade600,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isPasswordVisible = !_isPasswordVisible;
+                            });
+                          },
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: Colors.grey.shade300),
+                          borderSide: BorderSide(color: AppTheme.primaryColor, width: 2.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: AppTheme.primaryColor, width: 2.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: AppTheme.primaryColor, width: 2.0),
                         ),
                         filled: true,
-                        fillColor: Colors.grey.shade50,
+                        fillColor: Colors.white,
                         contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 20),
                       ),
                     ),
-
                     const SizedBox(height: 32),
                     Directionality(
                       textDirection: TextDirection.rtl,
@@ -193,9 +223,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-
-
-
                     const SizedBox(height: 24),
                     Directionality(
                       textDirection: TextDirection.rtl,
@@ -245,10 +272,10 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
+  @override
   void dispose() {
     super.dispose();
   }

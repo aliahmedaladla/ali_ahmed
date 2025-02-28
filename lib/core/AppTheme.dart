@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   ///colors
-  static const Color primaryColor = Color(0xFFDC6465);
+  static  Color primaryColor = Color(0xFF2196F3);
 
-  static MaterialColor primarySwatch = MaterialColor(Color(0xFFDC6465).value, {
-    50: const Color(0xFFDC6465).withOpacity(.05),
-    100: const Color(0xFFDC6465).withOpacity(.1),
-    200: const Color(0xFFDC6465).withOpacity(.2),
-    300: const Color(0xFFDC6465).withOpacity(.3),
-    400: const Color(0xFFDC6465).withOpacity(.4),
-    500: const Color(0xFFDC6465).withOpacity(.5),
-    600: const Color(0xFFDC6465).withOpacity(.6),
-    700: const Color(0xFFDC6465).withOpacity(.7),
-    800: const Color(0xFFDC6465).withOpacity(.8),
-    900: const Color(0xFFDC6465).withOpacity(.9)
+  static MaterialColor primarySwatch = MaterialColor(Color(0xFF2D59E6).value, {
+    50: const Color(0xFF2B43E1).withOpacity(.05),
+    100: const Color(0xFF3C88EC).withOpacity(.1),
+    200: const Color(0xFF57C4F3).withOpacity(.2),
+    300: const Color(0xFF56F1F6).withOpacity(.3),
+    400: const Color(0xFF3843BA).withOpacity(.4),
+    500: const Color(0xF54A24F3).withOpacity(.5),
+    600: const Color(0xFF159BF6).withOpacity(.6),
+    700: const Color(0xFF92DAEC).withOpacity(.7),
+    800: const Color(0xFF97E497).withOpacity(.8),
+    900: const Color(0xFF7CDDC3).withOpacity(.9)
   });
 
   static const Color secondaryColor = Color(0xFFFFFFFF);

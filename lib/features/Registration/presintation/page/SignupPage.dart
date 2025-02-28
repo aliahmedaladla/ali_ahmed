@@ -31,16 +31,19 @@ class _LoginPageState extends State<SinupPage> {
   Widget build(BuildContext context) {
     screenUtil.init(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: AppTheme.deepOrange,
+        backgroundColor: AppTheme.primaryColor,
         title: Text(
           "تسجيل حساب",
           style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.bold,
-            color: AppTheme.black,
+            color: Colors.white,
           ),
         ),
+        centerTitle: true,
+        elevation: 0,
       ),
       body: BlocProvider(
         create: (context) => sl<Registration_bloc>(),
@@ -110,9 +113,9 @@ class _LoginPageState extends State<SinupPage> {
                       alignment: Alignment.center,
                       child: CircleAvatar(
                         radius: 60,
-                        backgroundColor: Theme.of(context).primaryColor.withOpacity(0.1),
+                        backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
                         child: Icon(
-                          Icons.shopping_cart,
+                          Icons.person,
                           size: 60,
                           color: AppTheme.primaryColor,
                         ),
@@ -132,10 +135,18 @@ class _LoginPageState extends State<SinupPage> {
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: Colors.grey.shade300),
+                          borderSide: BorderSide(color: AppTheme.primaryColor, width: 2.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: AppTheme.primaryColor, width: 2.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: AppTheme.primaryColor, width: 2.0),
                         ),
                         filled: true,
-                        fillColor: Colors.grey.shade50,
+                        fillColor: Colors.white,
                         contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 20),
                       ),
                     ),
@@ -154,10 +165,18 @@ class _LoginPageState extends State<SinupPage> {
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: Colors.grey.shade300),
+                          borderSide: BorderSide(color: AppTheme.primaryColor, width: 2.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: AppTheme.primaryColor, width: 2.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: AppTheme.primaryColor, width: 2.0),
                         ),
                         filled: true,
-                        fillColor: Colors.grey.shade50,
+                        fillColor: Colors.white,
                         contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 20),
                       ),
                     ),
@@ -176,10 +195,18 @@ class _LoginPageState extends State<SinupPage> {
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: Colors.grey.shade300),
+                          borderSide: BorderSide(color: AppTheme.primaryColor, width: 2.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: AppTheme.primaryColor, width: 2.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: AppTheme.primaryColor, width: 2.0),
                         ),
                         filled: true,
-                        fillColor: Colors.grey.shade50,
+                        fillColor: Colors.white,
                         contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 20),
                       ),
                     ),
@@ -195,7 +222,7 @@ class _LoginPageState extends State<SinupPage> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: AppTheme.primaryColor,
+                        backgroundColor: Colors.blue,
                         padding: EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -207,7 +234,7 @@ class _LoginPageState extends State<SinupPage> {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
-                          color: AppTheme.white,
+                          color: Colors.white,
                         ),
                       ),
                     ),

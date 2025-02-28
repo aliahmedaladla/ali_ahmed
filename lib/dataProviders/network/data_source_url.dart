@@ -39,4 +39,7 @@ class DataSourceURL {
   static String sendShare = 'total_people';
   static String countUsers = 'form/total_people/count';
   static String stories = 'form/stories';
+  static String carousel = "carousel";
+  static String categories ="categories";
+  static String featuredProducts ="products/featured";
 }

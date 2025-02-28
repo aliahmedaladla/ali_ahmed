@@ -2,6 +2,8 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ufuqstore/features/Home/data/repository/HomeRepository.dart';
+import 'package:ufuqstore/features/Home/presintation/manager/Home_bloc.dart';
 import 'package:ufuqstore/features/Product/data/repository/ProductRepository.dart';
 import 'package:ufuqstore/features/Product/presintation/manager/Product_bloc.dart';
 import 'package:ufuqstore/features/ProductDeatils/data/repository/ProductDeatilsRepository.dart';
@@ -40,6 +42,7 @@ Future<void> init() async {
   _initProduct_blocFeature();
   _initProductDeatils_blocFeature();
   _initRegistration_blocFeature();
+  _initHOme_blocFeature();
 
   ///service provider
 
@@ -104,6 +107,20 @@ void _initProductDeatils_blocFeature() {
   );
 }
 
+
+void _initHOme_blocFeature() {
+//bloc
+  sl.registerFactory(() => Home_bloc(repository: sl()));
+
+  //repositories
+  sl.registerLazySingleton<HomeRepository>(
+        () => HomeRepository(
+      remoteDataProvider: sl(),
+      localDataProvider: sl(),
+      networkInfo: sl(),
+    ),
+  );
+}
 //
 // void _initBrand_blocFeature() {
 // //bloc
